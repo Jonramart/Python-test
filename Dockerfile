@@ -5,7 +5,7 @@ FROM python:3.11-slim
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
 
-WORKDIR /src
+WORKDIR /app
 
 # Dependencias del sistema para evitar fallos de compilación [cite: 2]
 RUN apt-get update && apt-get install -y --no-install-recommends \
@@ -13,10 +13,10 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && rm -rf /var/lib/apt/lists/*
 
 # Instalación de dependencias (cacheado eficiente) [cite: 14]
-COPY requirements.txt .
+COPY src/requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Copia del código fuente
 COPY . .
 
-CMD ["python", "main2.py"]
+CMD ["python", "src/main2.py"]
