@@ -21,7 +21,7 @@ jobs:
     steps:
     - name: checkout repository
       uses: actions/checkout@v4
-      
+
     - name: Set up Python 3.12.0
       uses: actions/setup-python@v3
       with:
@@ -40,9 +40,9 @@ jobs:
 
     - name: Test with pytest
       working-directory: src
-      run: pytest test2.py --doctest-modules --junitxml=junit/test-results-${{ matrix.python-version }}.xml
-    #Display and upload result
+      run: pytest test2.py --doctest-modules --junitxml=src/junit/test-results.xml
 
+    #Display and upload result
     - name: Upload pytest test results
       uses: actions/upload-artifact@v4
       with:
